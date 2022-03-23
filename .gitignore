@@ -75,7 +75,7 @@
 
 # Miscellaneous
 /libraries/lazy/.angular/cache
-/libraries/lazy.sass-cache/
+/libraries/lazy/.sass-cache/
 /libraries/lazy/connect.lock
 /libraries/lazy/coverage
 /libraries/lazy/libpeerconnection.log
@@ -120,7 +120,7 @@
 
 # Miscellaneous
 /libraries/store/.angular/cache
-/libraries/store.sass-cache/
+/libraries/store/.sass-cache/
 /libraries/store/connect.lock
 /libraries/store/coverage
 /libraries/store/libpeerconnection.log
