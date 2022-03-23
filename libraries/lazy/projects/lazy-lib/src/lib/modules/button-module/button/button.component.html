@@ -1,0 +1,10 @@
+<section>
+    <button [ngClass]="inputElement.class"
+            [style]="inputElement.style"
+            preventDoubleClick
+            [debounceTime]="300"
+            (debounceClick)="_handleClick(inputElement.execute)"
+            [disabled]="disabled">
+            {{ inputElement.value }}
+    </button>
+</section>

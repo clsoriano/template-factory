@@ -1,0 +1,527 @@
+{
+    "nestedFlow": [
+        {
+            "id": "123123232",
+            "name": "nextNestedFlow",
+            "path": "nested1-sale",
+            "viewParent": {
+                "id": "1234-view",
+                "name": "firstView"
+            },
+            "body": {
+                "id": "div-body",
+                "style": {},
+                "class": ["container", "mt-5", "app-cdk-step"],
+                "divList": [
+                    {
+                        "id": "div-form",
+                        "name": "formLogin",
+                        "class": [],
+                        "style": {},
+                        "isForm": true,
+                        "isStep": false,
+                        "divList": [
+                            {
+                                "id": "div-pr2",
+                                "class": ["row"],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "div-l-0",
+                                        "class": ["col"],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptUsername",
+                                            "name": "Usuario",
+                                            "label": "Usuario",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "text",
+                                            "placeholder": "Ingrese usuario",
+                                            "appareance": "outline",
+                                            "validatorList":[
+                                                {   
+                                                    "type": "required",
+                                                    "message":"Campo requerido"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "id": "div-in-0",
+                                        "class": ["col"],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptPassword",
+                                            "name": "Contraseña",
+                                            "label": "Contraseña",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "password",
+                                            "placeholder": "Ingrese su contraseña",
+                                            "appareance": "outline",
+                                            "validatorList":[
+                                                {   
+                                                    "type": "required",
+                                                    "message":"Campo requerido"
+                                                }
+                                            ],
+                                            "execute": {
+                                                "clientList": [],
+                                                "serverList": []
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "id": "div-in-0",
+                                        "class": ["col"],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptDocument",
+                                            "name": "DUI",
+                                            "label": "DUI",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "text",
+                                            "placeholder": "Ingrese Documento",
+                                            "appareance": "outline",
+                                            "validatorList":[
+                                                {   
+                                                    "type": "required",
+                                                    "message":"Campo requerido"
+                                                }
+                                            ],
+                                            "mask": "########-#",
+                                            "maxlength": 10
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": ["row"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptSelect",
+                                        "name": "iptSelect",
+                                        "label": "Pokemons",
+                                        "class": [],
+                                        "style": {},
+                                        "type": "select",
+                                        "placeholder": "Seleccione opción",
+                                        "appareance": "outline",
+                                        "value": "",
+                                        "viewValue": "name",
+                                        "optionList": [
+                                            {
+                                                "name": "Seleccione opción",
+                                                "url": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "name": "Pikachu",
+                                                "url": "1212"
+                                            }
+                                        ],
+                                        "validatorList":[
+                                            {   
+                                                "type": "required",
+                                                "message":"Campo requerido"
+                                            }
+                                        ],
+                                        "execute": {
+                                            "clientList": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "hiddenIptSelectByName",
+                                                    "actionView": "onChange",
+                                                    "description": "Set hidden iptSelectByName",
+                                                    "inputList": [
+                                                        {
+                                                            "name": "iptSelectByName",
+                                                            "formParentName": "formLogin",
+                                                            "hidden": true,
+                                                            "validatorList": []
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "name": "hiddenIptSelectByNameCallback",
+                                                    "actionView": "onCallback",
+                                                    "description": "Set hidden iptSelectByName",
+                                                    "inputList": [
+                                                        {
+                                                            "name": "iptSelectByName",
+                                                            "formParentName": "formLogin",
+                                                            "hidden": true
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "serverList": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "FirstRequest",
+                                                    "description": "Search the first nestedFlow to renderer",
+                                                    "uri": "https://pokeapi.co/api/v2/pokemon?limit=10&offset=200",
+                                                    "method": "GET",
+                                                    "actionView": "onLoad",
+                                                    "httpHeader": [],
+                                                    "httpParameter": {
+                                                        "type": "",
+                                                        "parameters": [
+                                                            {}
+                                                        ]
+                                                    },
+                                                    "body": {
+                                                        "test": "()=> { console.log('Better way'); }"
+                                                    },
+                                                    "response":{
+                                                        "pokeList": "$.results[*]"
+                                                    },
+                                                    "storageName": "response01",
+                                                    "inputList": [
+                                                        {
+                                                            "name":"iptSelect",
+                                                            "value": "$.pokeList[*]"
+                                                        }
+                                                    ],
+                                                    "handlerErrors": [
+                                                        {
+                                                            "code": 401,
+                                                            "message": "Unauthorized",
+                                                            "log": "Error get services `${name}`",
+                                                            "redirect": true,
+                                                            "nestedFlow": {
+                                                                "id": "id-12345-nestedFlow",
+                                                                "name": "test"
+                                                            }
+                                                        },
+                                                        {
+                                                            "code": 404,
+                                                            "log": "Not found registers when get services `${name}`",
+                                                            "message": "Registers not found, try again with others filters!",
+                                                            "show": true,
+                                                            "time": 6000
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": 1,
+                                                    "name": "searchPokemonByName",
+                                                    "description": "Search pokemon by names",
+                                                    "uri": "https://pokeapi.co/api/v2/pokemon",
+                                                    "method": "GET",
+                                                    "actionView": "onChange",
+                                                    "httpHeader": [],
+                                                    "httpParameter": {
+                                                        "type": "PATH",
+                                                        "parameterList": [
+                                                            {
+                                                                "key": "name",
+                                                                "value": "$.iptSelect.name"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "body": {},
+                                                    "response":{
+                                                        "pokemonTypes": "$.forms[*]"
+                                                    },
+                                                    "storageName": "response01",
+                                                    "inputList": [
+                                                        {
+                                                            "name": "iptSelectByName",
+                                                            "value": "$.pokemonTypes[*]",
+                                                            "formParentName": "formLogin"
+                                                        }
+                                                    ],
+                                                    "handlerErrors": [
+                                                        {
+                                                            "code": 401,
+                                                            "message": "Unauthorized",
+                                                            "log": "Error get services `${name}`",
+                                                            "redirect": true,
+                                                            "nestedFlow": {
+                                                                "id": "id-12345-nestedFlow",
+                                                                "name": "test"
+                                                            }
+                                                        },
+                                                        {
+                                                            "code": 404,
+                                                            "log": "Not found registers when get services `${name}`",
+                                                            "message": "Registers not found, try again with others filters!",
+                                                            "show": true,
+                                                            "time": 6000
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": ["row"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptSelectByName",
+                                        "name": "iptSelectByName",
+                                        "label": "Types",
+                                        "class": [],
+                                        "style": {},
+                                        "type": "select",
+                                        "placeholder": "Seleccione tipo",
+                                        "appareance": "outline",
+                                        "value": "",
+                                        "viewValue": "name",
+                                        "optionList": [
+                                            {
+                                                "name": "Seleccione opción",
+                                                "url": "",
+                                                "disabled": true
+                                            }
+                                        ],
+                                        "validatorList":[
+                                            {   
+                                                "type": "required",
+                                                "message":"Campo requerido"
+                                            }
+                                        ],
+                                        "execute": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": ["row", "other"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptDate",
+                                        "name": "iptDate",
+                                        "label": "Fecha Ingreso",
+                                        "class": [],
+                                        "style": {},
+                                        "type": "calendar",
+                                        "placeholder": "Seleccione fecha",
+                                        "appareance": "outline",
+                                        "value": "",
+                                        "icon": "calendar_today",
+                                        "iconPosition": "suffix",
+                                        "readonly": true,
+                                        "optionList": [],
+                                        "validatorList":[
+                                            {   
+                                                "type": "required",
+                                                "message":"Campo requerido"
+                                            }
+                                        ],
+                                        "extendedAttributes": {
+                                            "startView": "month",
+                                            "startDate": "01/01/1988",
+                                            "format": "DD/MM/YYYY"
+                                        },
+                                        "execute": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": ["row", "other"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptCheckbox",
+                                        "name": "iptCheckbox",
+                                        "label": "Prueba de checkbox",
+                                        "class": [],
+                                        "style": {},
+                                        "type": "checkbox",
+                                        "placeholder": "",
+                                        "appareance": "",
+                                        "value": "",
+                                        "optionList": [],
+                                        "validatorList":[
+                                            {   
+                                                "type": "required",
+                                                "message":"Campo requerido"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": ["row", "other"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": ["mt-5"],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptImage",
+                                        "name": "iptImage",
+                                        "label": "",
+                                        "class": [],
+                                        "style": {
+                                            "width":"150px",
+                                            "height": "100px"
+                                        },
+                                        "type": "image",
+                                        "placeholder": "",
+                                        "appareance": "",
+                                        "value": "https://logowik.com/content/uploads/images/985_google_g_icon.jpg",
+                                        "optionList": [],
+                                        "validatorList":[]
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": ["row", "other"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "style": {
+                                        "display": "flex",
+                                        "flex-direction": "column",
+                                        "margin": "15px 0",
+                                        "align-items": "flex-start"
+                                    },
+                                    "input": {
+                                        "id": "iptRadiobtn",
+                                        "name": "iptRadiobtn",
+                                        "label": "Selecciona lo siguiente detallado",
+                                        "class": [],
+                                        "style": {
+                                            "margin": "5px"
+                                        },
+                                        "type": "radio",
+                                        "placeholder": "",
+                                        "appareance": "",
+                                        "value": "",
+                                        "viewValue": "label",
+                                        "optionList": [
+                                            {
+                                                "label": "Si",
+                                                "value": "S"
+                                            },
+                                            {
+                                                "label": "No",
+                                                "value": "N"
+                                            }
+                                        ],
+                                        "validatorList":[
+                                            {   
+                                                "type": "required",
+                                                "message":"Campo requerido"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr5",
+                                "class": ["row"],
+                                "style": {},
+                                "div": {
+                                    "id": "div-l-0",
+                                    "class": ["col"],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptLogin",
+                                        "name": "login",
+                                        "label": "Login",
+                                        "value": "Login",
+                                        "class": ["mat-raised-button"],
+                                        "style": {},
+                                        "type": "button",
+                                        "placeholder": "",
+                                        "appareance": "",
+                                        "validatorList":[],
+                                        "execute": {
+                                            "clientList": [
+                                                {
+                                                    "actionView": "onRoute",
+                                                    "nestedFlowName": "next2NestedFlow"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            } 
+        },
+        {
+            "id": "12312323",
+            "name": "next2NestedFlow",
+            "path": "nested1-sale",
+            "viewParent": {
+                "id": "1234-view",
+                "name": "firstView"
+            },
+            "body": {
+                "id": "div-body",
+                "style": {},
+                "class": ["container", "mt-5", "app-cdk-step"],
+                "divList": [
+                    {   
+                        "id": "div-pr2",
+                        "class": ["row"],
+                        "style": {},
+                        "textPlain": "HOLA MUNDO!!!!!",
+                        "name": "formHello",
+                        "isForm": true,
+                        "divList": [
+                            {
+                                "id": "div-l-0",
+                                "class": ["col"],
+                                "style": {},
+                                "input": {
+                                    "id": "iptContinue",
+                                    "name": "login",
+                                    "label": "Continuar",
+                                    "value": "Continuar",
+                                    "class": ["mat-raised-button"],
+                                    "style": {},
+                                    "type": "button",
+                                    "placeholder": "",
+                                    "appareance": "",
+                                    "validatorList":[],
+                                    "execute": {
+                                        "clientList": [
+                                            {
+                                                "actionView": "onRoute",
+                                                "nestedFlowName": "nextNestedFlow"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

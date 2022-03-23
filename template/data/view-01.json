@@ -1,0 +1,80 @@
+{
+    "view": {
+        "id": "1234-view",
+        "name": "firstView",
+        "description": "Example of firstView",
+        "rootPath": "nested1-sale",
+        "nestedFlow": {
+            "id": "1232323",
+            "name": "firstNestedFlow"
+        },
+        "httpHandlerErrors": [
+            {
+                "code": 401,
+                "message": "Unauthorized",
+                "log": "Error get services `${name}`",
+                "redirect": true,
+                "nestedFlow": {
+                    "id": "id-12345-nestedFlow",
+                    "name": "test"
+                }
+            },
+            {
+                "code": 404,
+                "log": "Not found registers when get services `${name}`",
+                "message": "Registers not found, try again with others filters!",
+                "show": true,
+                "time": 6000
+            }
+        ],
+        "execute": {
+            "server": [
+                {
+                    "id": 1,
+                    "name": "FirstRequest",
+                    "description": "Search the first nestedFlow to renderer",
+                    "uri": "http://localhost:8080/",
+                    "method": "GET",
+                    "httpHeaderList": [
+                        {
+                            "key": "keyName",
+                            "value": "2"
+                        }
+                    ],
+                    "httpParameter": {
+                        "type": "",
+                        "parameterList": [
+                            {}
+                        ]
+                    },
+                    "body": {
+                        "test": "()=> { console.log('Better way'); }"
+                    },
+                    "save": true,
+                    "storageName": "response01",
+                    "handlerErrors": [
+                        {
+                            "code": 401,
+                            "message": "Unauthorized",
+                            "log": "Error get services `${name}`",
+                            "redirect": true,
+                            "nestedFlow": {
+                                "id": "id-12345-nestedFlow",
+                                "name": "test"
+                            }
+                        },
+                        {
+                            "code": 404,
+                            "log": "Not found registers when get services `${name}`",
+                            "message": "Registers not found, try again with others filters!",
+                            "show": true,
+                            "time": 6000
+                        }
+                    ]
+                }
+            ]
+        },
+        "header": {},
+        "footer": {}
+    }
+}

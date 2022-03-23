@@ -1,0 +1,52 @@
+<div [formGroup]="fgroup" [hidden]="inputElement.hidden">
+
+    <mat-form-field [ngClass]="divParent.class" 
+                [style]="divParent.style" 
+                [appearance]="inputElement.appareance"
+                [floatLabel]="inputElement.floatLabel">
+    
+        <mat-label>{{ inputElement.label }}</mat-label>
+
+        <textarea matInput maskDirective [id]="inputElement.id" 
+                [type]="inputElement.type"
+                [formControlName]="inputElement.id"
+                [placeholder]="inputElement.placeholder"
+                [ngClass]="inputElement.class"
+                [style]="inputElement.style"
+                [autofocus]="inputElement.autofocus"
+                [autocomplete]="inputElement.autocomplete"
+                [maxlength]="inputElement.maxlength || 255"
+                [errorStateMatcher]="matcher"
+                (input)="_handleInput(fgroup.controls[inputElement.id], $event)"
+                [control]="inputElement"></textarea>
+        
+        <mat-hint>
+            {{ inputElement.hint }}
+        </mat-hint>
+        
+        <!-- Errors on input -->
+        <mat-error>
+            {{ getError() }}
+        </mat-error>
+        
+
+        <!-- Icon position validation -->
+        <ng-template [ngIf]="inputElement.icon">
+
+            <ng-template [ngIf]="inputElement.iconPosition == 'prefix'" [ngIfElse]="suffix">
+                <mat-icon matPrefix>
+                    {{inputElement.icon}}
+                </mat-icon>
+            </ng-template>
+
+            <ng-template #suffix>
+                <mat-icon matSuffix>
+                    {{inputElement.icon}}
+                </mat-icon>
+            </ng-template>
+
+        </ng-template>
+
+    </mat-form-field>
+    
+</div>

@@ -1,0 +1,113 @@
+<ng-container *ngTemplateOutlet="begin; context:{formGroupParent, divElement, execFnEvent}"></ng-container>
+
+<!-- Begin template -->
+<ng-template #begin let-divElement="divElement" let-formGroupParent="formGroupParent" let-formName="formName"
+    let-execFnEvent="execFnEvent" let-isFatherStep="isFatherStep">
+
+    <!-- When div is a form this need to register a formGroupName otherwise just add content -->
+    <ng-template [ngIf]="divElement.isForm" [ngIfElse]="notForm">
+        <ng-container
+            *ngTemplateOutlet="appFormDivContent; context:{formGroupParent, formName, divElement, execFnEvent, isFatherStep}">
+        </ng-container>
+
+    </ng-template>
+
+    <!--No Form with validation cdkStep-->
+    <ng-template #notForm>
+        <ng-container
+            *ngTemplateOutlet="appDivContent; context:{formGroupParent, formName, divElement, execFnEvent, isFatherStep}">
+        </ng-container>
+
+    </ng-template>
+
+</ng-template>
+
+
+<!-- Form Template -->
+<ng-template #appFormDivContent let-divElement="divElement" let-formGroupParent="formGroupParent"
+    let-execFnEvent="execFnEvent">
+
+    <form [formGroup]="formGroupParent">
+
+        <div [formGroupName]="divElement.name" [ngClass]="divElement.class" [ngStyle]="divElement.style">
+            <ng-container
+                *ngTemplateOutlet="appDivSubContent; context:{formGroupParent, divElement, formName: divElement.name, execFnEvent}">
+            </ng-container>
+        </div>
+
+    </form>
+
+</ng-template>
+
+<!-- Not Form Template -->
+<ng-template #appDivContent let-divElement="divElement" let-formGroupParent="formGroupParent" let-formName="formName"
+    let-execFnEvent="execFnEvent">
+    <div [ngClass]="divElement.class" [ngStyle]="divElement.style">
+        <ng-template [ngIf]="divElement.isStep" [ngIfElse]="notStepForm">
+            <!-- No support for html or text plane or div if you want to use step -->
+            <ng-template [ngIf]="divElement.divList">
+                <app-cdk-step #cdkStepper (execFnEvent)="invokeParent($event)">
+                    <ng-template ngFor let-div [ngForOf]="divElement.divList" let-i="index">
+                        <!-- by default all step are editable -->
+                        <cdk-step [stepControl]="formName" editable="true">
+                            <ng-container
+                                *ngTemplateOutlet="begin; context:{formGroupParent, formName, divElement: div, execFnEvent, isFatherStep: true}">
+                            </ng-container>
+                        </cdk-step>
+
+                    </ng-template>
+                </app-cdk-step>
+
+            </ng-template>
+
+        </ng-template>
+
+        <ng-template #notStepForm>
+            <ng-container
+                *ngTemplateOutlet="appDivSubContent; context:{formGroupParent, formName, divElement, execFnEvent, isFatherStep: false}">
+            </ng-container>
+        </ng-template>
+    </div>
+
+</ng-template>
+
+<!-- Content template -->
+<ng-template #appDivSubContent let-divElement="divElement" let-formGroupParent="formGroupParent" let-formName="formName"
+    let-execFnEvent="execFnEvent" let-isFatherStep="isFatherStep">
+
+    <ng-template [ngIf]="divElement.textPlain || divElement.textHtml">
+        <span>{{divElement.textPlain}}</span>
+        <div [innerHtml]="divElement.textHtml"></div>
+    </ng-template>
+
+    <ng-template [ngIf]="divElement.div">
+
+        <ng-container
+            *ngTemplateOutlet="begin; context:{formGroupParent, formName , divElement: divElement.div, execFnEvent, isFatherStep}">
+        </ng-container>
+
+    </ng-template>
+
+    <ng-template [ngIf]="divElement.divList">
+
+        <ng-template ngFor let-div [ngForOf]="divElement.divList" let-i="index">
+
+            <ng-container
+                *ngTemplateOutlet="begin; context:{formGroupParent, formName, divElement: div, execFnEvent, isFatherStep}">
+            </ng-container>
+
+        </ng-template>
+
+    </ng-template>
+
+    <ng-template [ngIf]="divElement.input">
+
+        <ng-container [formGroup]="formGroupParent.get(formName)">
+            <ng-template dynamicFormControl [inputElement]="divElement.input" [divParent]="divElement"
+                (execFnEvent)="invokeParent($event)">
+            </ng-template>
+        </ng-container>
+
+    </ng-template>
+
+</ng-template>

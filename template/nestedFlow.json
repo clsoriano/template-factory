@@ -1,0 +1,115 @@
+{
+    "nestedFlow": {
+        "id": "",
+        "name": "next7NestedFlow",
+        "body": {
+            "style": {},
+            "class": "container",
+            "div": {
+                "id": "",
+                "class": [],
+                "style": {},
+                "divList": [
+                    {
+                        "id": "",
+                        "class": ["row"],
+                        "style": {},
+                        "divList": [
+                            {
+                                "id": "",
+                                "class": ["col"],
+                                "style": {},
+                                "input": {
+                                    "id": "iptUsername",
+                                    "name": "Usuario",
+                                    "class": [],
+                                    "style": {},
+                                    "type": "text",
+                                    "placeholder": "",
+                                    "appareance": ""
+                                }
+                            },
+                            {
+                                "id": "",
+                                "class": ["col"],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "",
+                                        "class": [],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptPassword",
+                                            "name": "Contraseña",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "password",
+                                            "placeholder": "",
+                                            "appareance": "",
+                                            "action": {
+                                                "clientList": [],
+                                                "serverList": []
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "id": "",
+                                        "class": [],
+                                        "style": {},
+                                        "table": {
+                                            "id": "iptTbOfertas",
+                                            "name": "tbOfertas",
+                                            "label": "",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "password",
+                                            "placeholder": "",
+                                            "appareance": "",
+                                            "options": [],
+                                            "th": [
+                                                {
+                                                    "id": "",
+                                                    "class": [],
+                                                    "style": {},
+                                                    "textPlain": "Encabezado"
+                                                },
+                                                {
+                                                    "id": "",
+                                                    "class": [],
+                                                    "style": {},
+                                                    "textHtml": "<strong>Encabezado2</strong>"
+                                                }
+                                            ],
+                                            "td": [
+                                                {
+                                                    "id": "",
+                                                    "class": [],
+                                                    "style": {},
+                                                    "input": {
+                                                        "id": "iptOfertas",
+                                                        "name": "ofertas",
+                                                        "label": "Seleccione una oferta",
+                                                        "class": [],
+                                                        "style": {},
+                                                        "type": "select",
+                                                        "placeholder": "",
+                                                        "appareance": "",
+                                                        "value": "",
+                                                        "execute": {
+                                                            "clientList": [],
+                                                            "serverList": []
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        } 
+    }
+}

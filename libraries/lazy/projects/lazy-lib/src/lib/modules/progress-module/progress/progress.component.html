@@ -1,0 +1,9 @@
+<section class="progress-section" [hidden]="inputElement.hidden">
+    <mat-progress-bar
+        [ngClass]="inputElement.class"
+        [ngStyle]="inputElement.style"
+        [mode]="inputElement.extendedAttributes?.mode || 'determinate'"
+        [value]="value"
+        [bufferValue]="fgroup.get(inputElement.id)?.value">
+    </mat-progress-bar>
+</section>

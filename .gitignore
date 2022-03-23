@@ -1,0 +1,132 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/template/dist
+/template/tmp
+/template/out-tsc
+/template/bazel-out
+
+# Node
+/template/node_modules
+/template/npm-debug.log
+/template/yarn-error.log
+
+# IDEs and editors
+/template/.idea/
+/template/.project
+/template/.classpath
+/template/.c9/
+/template/*.launch
+/template/.settings/
+/template/*.sublime-workspace
+
+# Visual Studio Code
+/template/.vscode/*
+/template/!.vscode/settings.json
+/template/!.vscode/tasks.json
+/template/!.vscode/launch.json
+/template/!.vscode/extensions.json
+/template/.history/*
+
+# Miscellaneous
+/template/.angular/cache
+/template/.sass-cache/
+/template/connect.lock
+/template/coverage
+/template/libpeerconnection.log
+/templatetestem.log
+/template/typings
+
+# System files
+/template/.DS_Store
+/template/Thumbs.db
+
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/libraries/lazy/dist
+/libraries/lazy/tmp
+/libraries/lazy/out-tsc
+/libraries/lazy/bazel-out
+
+# Node
+/libraries/lazy/node_modules
+/libraries/lazy/npm-debug.log
+/libraries/lazy/yarn-error.log
+
+# IDEs and editors
+/libraries/lazy/.idea/
+/libraries/lazy/.project
+/libraries/lazy/.classpath
+/libraries/lazy/.c9/
+/libraries/lazy/*.launch
+/libraries/lazy/.settings/
+/libraries/lazy/*.sublime-workspace
+
+# Visual Studio Code
+/libraries/lazy/.vscode/*
+/libraries/lazy/!.vscode/settings.json
+/libraries/lazy/!.vscode/tasks.json
+/libraries/lazy/!.vscode/launch.json
+/libraries/lazy/!.vscode/extensions.json
+/libraries/lazy/.history/*
+
+# Miscellaneous
+/libraries/lazy/.angular/cache
+/libraries/lazy.sass-cache/
+/libraries/lazy/connect.lock
+/libraries/lazy/coverage
+/libraries/lazy/libpeerconnection.log
+/libraries/lazytestem.log
+/libraries/lazy/typings
+
+# System files
+/libraries/lazy/.DS_Store
+/libraries/lazy/Thumbs.db
+
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/libraries/store/dist
+/libraries/store/tmp
+/libraries/store/out-tsc
+/libraries/store/bazel-out
+
+# Node
+/libraries/store/node_modules
+/libraries/store/npm-debug.log
+/libraries/store/yarn-error.log
+
+# IDEs and editors
+/libraries/store/.idea/
+/libraries/store/.project
+/libraries/store/.classpath
+/libraries/store/.c9/
+/libraries/store/*.launch
+/libraries/store/.settings/
+/libraries/store/*.sublime-workspace
+
+# Visual Studio Code
+/libraries/store/.vscode/*
+/libraries/store/!.vscode/settings.json
+/libraries/store/!.vscode/tasks.json
+/libraries/store/!.vscode/launch.json
+/libraries/store/!.vscode/extensions.json
+/libraries/store/.history/*
+
+# Miscellaneous
+/libraries/store/.angular/cache
+/libraries/store.sass-cache/
+/libraries/store/connect.lock
+/libraries/store/coverage
+/libraries/store/libpeerconnection.log
+/libraries/storetestem.log
+/libraries/store/typings
+
+# System files
+/libraries/store/.DS_Store
+/libraries/store/Thumbs.db

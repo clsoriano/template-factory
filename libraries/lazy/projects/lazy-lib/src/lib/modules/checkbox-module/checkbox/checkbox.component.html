@@ -1,0 +1,22 @@
+<div [formGroup]="fgroup" [hidden]="inputElement.hidden">
+
+    <mat-checkbox [id]="inputElement.id"
+                [formControlName]="inputElement.id"
+                [ngClass]="inputElement.class"
+                [style]="inputElement.style"
+                [maxlength]="inputElement.maxlength || 255"
+                (change)="_handleInput(fgroup.controls[inputElement.id], $event)">
+        {{ inputElement.label }}
+    </mat-checkbox>
+
+    <!--Validate if is neccessary create alternative with list of checkbox-->
+    <mat-hint>
+        {{ inputElement.hint }}
+    </mat-hint>
+    
+    <!-- Errors on input -->
+    <mat-error>
+        {{ getError() }}
+    </mat-error>
+
+</div>

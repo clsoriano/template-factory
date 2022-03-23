@@ -1,0 +1,297 @@
+{
+    "model": {
+        "view": {
+            "id": "1234-view",
+            "name": "firstView",
+            "description": "Example of firstView",
+            "resources": {
+                "scripts": [],
+                "styles": []
+            },
+            "environments": {
+                "target": "development",
+                "configurations": {
+                    "development": {},
+                    "certification": {},
+                    "production": {}
+                }
+            },
+            "nestedFlow": {
+                "id": "1232323",
+                "name": "nextNestedFlow"
+            },
+            "httpHandlerErrors": [
+                {
+                    "code": 401,
+                    "message": "Unauthorized",
+                    "log": "Error get services `${name}`",
+                    "redirect": true,
+                    "nestedFlow": {
+                        "id": "id-12345-nestedFlow",
+                        "name": "test"
+                    }
+                },
+                {
+                    "code": 404,
+                    "log": "Not found registers when get services `${name}`",
+                    "message": "Registers not found, try again with others filters!",
+                    "show": true,
+                    "time": 6000
+                }
+            ],
+            "header": {},
+            "footer": {}
+        }
+    },
+    "nestedModel": {
+        "nestedFlow": {
+            "id": "12312323",
+            "name": "nextNestedFlow",
+            "path": "nested1-sale",
+            "viewParent": {
+                "id": "1234-view",
+                "name": "firstView"
+            },
+            "body": {
+                "id": "div-body",
+                "style": {},
+                "class": [
+                    "container-sm",
+                    "container",
+                    "my-3"
+                ],
+                "isStep": true,
+                "divList": [
+                    {
+                        "id": "div-form",
+                        "name": "formConfirmData",
+                        "class": ["my-3", "py-3"],
+                        "style": {},
+                        "isForm": true,
+                        "divList": [
+                            {
+                                "id": "div-pr4",
+                                "class": [
+                                    "row",
+                                    "mb-2"
+                                ],
+                                "style": {},
+                                "textHtml": "<div class='mb-3'> <span>Hola Juan!<span> <div class='mt-3'><strong>Solicita y recibe tu tarjeta de crédito</strong></div> </div>",
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "textHtml": "<div class='mb-4'><span>Revisa que los datos esten correctos para continuar</span></div>",
+                                    "style": {
+                                        "width":"100%"
+                                    },
+                                    "input": {
+                                        "id": "iptEmail",
+                                        "name": "iptEmail",
+                                        "label": "Correo electrónico",
+                                        "class": ["trim-class"],
+                                        "style": {},
+                                        "type": "text",
+                                        "placeholder": "Digita tu correo electrónico",
+                                        "appareance": "outline",
+                                        "value": "",
+                                        "optionList": [],
+                                        "validators": [
+                                            {
+                                                "type": "required",
+                                                "message": "Campo requerido"
+                                            },
+                                            {
+                                                "type": "email",
+                                                "message": "Digita un correo válido"
+                                            },
+                                            {
+                                                "type": "notMin",
+                                                "message": "Revisa tu correo",
+                                                "expression": {
+                                                    "rules": {
+                                                        "<" : [{"var": "mail.length"}, 5]
+                                                    },
+                                                    "data": { "mail" : "value" }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr4",
+                                "class": [
+                                    "row",
+                                    "mb-2"
+                                ],
+                                "style": {},
+                                "div": {
+                                    "id": "div-in-0",
+                                    "class": [],
+                                    "style": {
+                                        "width": "100%"
+                                    },
+                                    "input": {
+                                        "id": "iptPhone",
+                                        "name": "phone",
+                                        "label": "Teléfono",
+                                        "class": [],
+                                        "style": {},
+                                        "type": "text",
+                                        "placeholder": "Digita tu número teléfonico",
+                                        "appareance": "outline",
+                                        "value": "",
+                                        "mask":"##-######",
+                                        "maxlength": 9,
+                                        "validators": [
+                                            {
+                                                "type": "required",
+                                                "message": "Campo requerido"
+                                            }
+                                        ],
+                                        "execute": {}
+                                    }
+                                }
+                            },
+                            {
+                                "id": "div-pr5",
+                                "class": [
+                                    "row",
+                                    "mb-2"
+                                ],
+                                "style": {},
+                                "div": {
+                                    "id": "div-l-0",
+                                    "class": [
+                                        "col"
+                                    ],
+                                    "style": {},
+                                    "input": {
+                                        "id": "iptContinue",
+                                        "name": "continue",
+                                        "label": "Continuar",
+                                        "value": "Continuar",
+                                        "class": [
+                                            "mat-raised-button",
+                                            "button-round"
+                                        ],
+                                        "style": {
+                                            "width":"100%",
+                                            "height": "50px"
+                                        },
+                                        "type": "button",
+                                        "placeholder": "",
+                                        "appareance": "",
+                                        "validators": [],
+                                        "disabled": true,
+                                        "execute": {
+                                            "clientList": [
+                                                {
+                                                    "actionView": "onNextStep",
+                                                    "formParentName": "formConfirmData"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "div-form",
+                        "name": "formLogin2",
+                        "class": ["my-3", "py-3"],
+                        "style": {},
+                        "isForm": true,
+                        "divList": [
+                            {
+                                "id": "div-pr2",
+                                "class": [
+                                    "row"
+                                ],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "div-l-0",
+                                        "class": [
+                                            "col"
+                                        ],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptUsername",
+                                            "name": "Usuario",
+                                            "label": "Usuario",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "text",
+                                            "placeholder": "Ingrese usuario",
+                                            "appareance": "outline",
+                                            "validators": [
+                                                {
+                                                    "type": "required",
+                                                    "message": "Campo requerido"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col"
+                                        ],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptPassword",
+                                            "name": "Contraseña",
+                                            "label": "Contraseña",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "password",
+                                            "placeholder": "Ingrese su contraseña",
+                                            "appareance": "outline",
+                                            "validators": [
+                                                {
+                                                    "type": "required",
+                                                    "message": "Campo requerido"
+                                                }
+                                            ],
+                                            "execute": {
+                                                "clientList": [],
+                                                "serverList": []
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col"
+                                        ],
+                                        "style": {},
+                                        "input": {
+                                            "id": "iptDocument",
+                                            "name": "DUI",
+                                            "label": "DUI",
+                                            "class": [],
+                                            "style": {},
+                                            "type": "text",
+                                            "placeholder": "Ingrese Documento",
+                                            "appareance": "outline",
+                                            "validators": [
+                                                {
+                                                    "type": "required",
+                                                    "message": "Campo requerido"
+                                                }
+                                            ],
+                                            "mask": "########-#",
+                                            "maxlength": 10
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
