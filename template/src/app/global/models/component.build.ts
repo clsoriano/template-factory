@@ -1,7 +1,7 @@
 import { BehaviorSubject, filter, Observable, Subject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
-import { Server, Client, Div, NestedFlow, InputElement, nestedFlowBuild, getBuildView, getNestedFlowByName, saveGlobalData, customFunction, ActionsView, LoggerService, ValidatorElement } from 'store-lib';
+import { Server, Client, Div, NestedFlow, InputElement, nestedFlowBuild, getBuildView, getNestedFlowByName, saveGlobalData, customFunction, ActionsView, LoggerService, ValidatorElement, Resources } from 'store-lib';
 import { setValueToInputElement, ComponentConfiguration, isInputValue, InputAction, CustomValidator, customAsyncValidator } from 'lazy-lib';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClientServiceImpl } from '../service/http-client.service.impl';
@@ -50,9 +50,13 @@ export class ComponentBuild {
 
           if (!v.view) throw new Error(`View is undefined.`);
 
-          const { nestedFlow } = v.view;
+          const { nestedFlow, resources, httpHandlerErrors } = v.view;
 
           if (!nestedFlow) throw new Error(`nestedFlow is undefined.`);
+
+          this.loadResources(resources);
+
+          if(!httpHandlerErrors) this.logger.warn('httpHandlerErrors global is not configurated.');
 
           this.findNestedFlow(nestedFlow.name).subscribe(
             ({ nestedFlow, formGroupParent }) => {
@@ -337,6 +341,56 @@ export class ComponentBuild {
     }
   }
 
+  loadResources(resources: Resources | undefined) {
+    if (!resources) {
+      this.logger.warn('resources is not configurated.');
+      return;
+    }
+
+    const { scripts, styles } = resources;
+    
+    if (!scripts || scripts.length == 0) this.logger.warn('scripts are not configurated.');
+
+    if (!styles || styles.length == 0) this.logger.warn('styles are not configurated.');
+
+    /** support global Env this.authorizationService.getValueFromEnvironments(r); */
+    // Load styles
+    if (styles) {
+      for (let style of styles) {
+        
+        let node = document.createElement('link');
+        node.href = style; // Se obtiene URL de estilo a cargar, solo se deben cargar de tipo css
+        node.rel = 'preload';
+        node.as = "style";
+        document.getElementsByTagName('head')[0].appendChild(node);
+
+        node = document.createElement('link');
+        node.href = style; // Se obtiene URL de estilo a cargar, solo se deben cargar de tipo css
+        node.rel = 'stylesheet';
+        node.type = 'text/css'
+        document.getElementsByTagName('head')[0].appendChild(node);
+
+      }
+    }
+
+    if (scripts) {
+      for (let src of scripts) {
+        let node = document.createElement('link');
+        node.href = src; // Se obtiene URL de estilo a cargar, solo se deben cargar de tipo css
+        node.rel = 'preload';
+        node.as = "script";
+        document.getElementsByTagName('head')[0].appendChild(node);
+
+        let script = document.createElement('script');
+        script.src = src; // Se obtiene URL de estilo a cargar, solo se deben cargar de tipo css
+        script.defer = true;
+        script.async = true;
+        document.getElementsByTagName('body')[0].appendChild(script);
+      }
+    }
+  }
+
+  /** Actions Views */
   execFn(action: InputAction) {
     const { client } = action;
     const args = Array.prototype.slice.call(arguments, 0);
@@ -423,5 +477,7 @@ export class ComponentBuild {
 
     /* this.interpreterService.JsonLogicApply(rules, data); */
   }
+  
+  /** Actions Views ***/
 
 }

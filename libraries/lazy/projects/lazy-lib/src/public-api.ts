@@ -20,6 +20,7 @@ export * from './lib/modules/input-module/input/input.component';
 export * from './lib/modules/radio-group-module/radio-group/radio-group.component';
 export * from './lib/modules/select-module/select/select.component';
 export * from './lib/modules/textarea-module/textarea/textarea.component';
+export * from './lib/modules/read-more-fade-module/read-more-fade/read-more-fade.component';
 
 // Directives
 export * from './lib/directive';

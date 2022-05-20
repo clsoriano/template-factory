@@ -7,4 +7,5 @@ export { InputModule } from './input-module/input.module';
 export { RadioGroupModule } from './radio-group-module/radio-group.module';
 export { SelectModule } from './select-module/select.module';
 export { TextareaModule } from './textarea-module/textarea.module';
-export { ProgressModule }  from './progress-module/progress.module'
+export { ProgressModule }  from './progress-module/progress.module';
+export { ReadMoreFadeModule } from './read-more-fade-module/read-more-fade.module';

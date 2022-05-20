@@ -38,5 +38,6 @@ export class InputElement {
     hidden!: boolean;
     mask!: string;
     regex!: string;
+    color!: string;
 
 }

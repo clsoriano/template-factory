@@ -1,0 +1,46 @@
+
+
+:host {
+    display: block;
+}
+
+/*Global Variables to Read More Fade*/
+$gradient-percentage: 5%;
+$gradient-light-background-color: #ffffff;
+$gradient-dark-background-color: rgba(255, 255, 255, 0);
+
+.gradient-mask {
+    -webkit-mask-image: linear-gradient(
+        180deg, 
+        $gradient-light-background-color
+        $gradient-percentage, 
+        $gradient-dark-background-color
+        100%
+    ); 
+    mask-image: linear-gradient(
+        180deg, 
+        $gradient-light-background-color
+        $gradient-percentage,
+        $gradient-dark-background-color
+        100%
+    ); 
+}
+
+.d-flex {
+    flex-flow: column nowrap;
+}
+
+.container-link {
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.container-link a {
+    font-weight: 300;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+

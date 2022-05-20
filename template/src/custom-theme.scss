@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -9,30 +8,97 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+$custom-primary-palette: (
+  50: #e7f7ee,
+  100: #c4ebd5,
+  200: #9edeba,
+  300: #74d29f,
+  400: #52c78a,
+  500: #28bd75,
+  600: #20ad6a,
+  700: #159b5d,
+  800: #0e8951,
+  900: #00693c,
+  A100: #b9f6ca,
+  A200: #69f0ae,
+  A400: #00e676,
+  A700: #00c853,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: rgba(white, 0.87),
+    500: rgba(white, 0.87),
+    600: rgba(white, 0.87),
+    700: rgba(white, 0.87),
+    800: rgba(white, 0.87),
+    900: rgba(white, 0.87),
+  ),
+  divider: #00693c
+);
+
+$custom-second-palette: (
+  50: #f3f9e9,
+  100: #e1efc9,
+  200: #cee4a7,
+  300: #bad983,
+  400: #aad067,
+  500: #9bc84c,
+  600: #8cb844,
+  700: #77a43a,
+  800: #639031,
+  900: #416e20,
+  A100: #ccff90,
+  A200: #b2ff59,
+  A400: #76ff03,
+  A700: #64dd17,
+  contrast: (
+    50: rgba(#8CB844, 0.87),
+    100: rgba(#8CB844, 0.87),
+    200: rgba(#8CB844, 0.87),
+    300: white,
+    400: rgba(#8CB844, 0.57),
+    500: rgba(#8CB844, 0.57),
+    600: rgba(#8CB844, 0.57),
+    700: rgba(#8CB844, 0.57),
+    800: rgba(#8CB844, 0.57),
+    900: rgba(#8CB844, 0.57),
+  ),
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$view-engine-primary: mat.define-palette(mat.$indigo-palette);
-$view-engine-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$view-engine-primary: mat.define-palette($custom-primary-palette, 900);
+$view-engine-second: mat.define-palette($custom-second-palette);
+$view-engine-accent: mat.define-palette($custom-primary-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $view-engine-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$view-engine-theme: mat.define-light-theme((
-  color: (
-    primary: $view-engine-primary,
-    accent: $view-engine-accent,
-    warn: $view-engine-warn,
+$view-engine-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $view-engine-primary,
+      accent: $view-engine-accent,
+      warn: $view-engine-warn
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($view-engine-theme);
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

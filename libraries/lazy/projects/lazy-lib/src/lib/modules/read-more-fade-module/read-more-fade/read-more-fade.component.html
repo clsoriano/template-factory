@@ -1,0 +1,13 @@
+<div [formGroup]="fgroup" [hidden]="inputElement.hidden">
+    
+    <article class="gradient-mask" id="article">
+        <span [innerHtml]="valueReadMore | safeResource"></span>
+    </article>
+    
+    <div class="container-link" *ngIf="flagHide">
+        <a [ngClass]="inputElement?.extendedAttributes.linkClass"  class="link" (click)="statusReadMoreFade()">
+            {{ valueLink }}
+        </a>
+    </div>
+
+</div>

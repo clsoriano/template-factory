@@ -1,10 +1,12 @@
 <section>
-    <button [ngClass]="inputElement.class"
+    <button mat-button
+            [ngClass]="inputElement.class"
             [style]="inputElement.style"
             preventDoubleClick
             [debounceTime]="300"
             (debounceClick)="_handleClick(inputElement.execute)"
-            [disabled]="disabled">
+            [disabled]="disabled"
+            [color]="inputElement.color">
             {{ inputElement.value }}
     </button>
 </section>

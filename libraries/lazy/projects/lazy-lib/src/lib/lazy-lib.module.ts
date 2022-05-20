@@ -4,7 +4,6 @@ import { PipeModule } from './pipes/pipe.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     DirectiveModule,

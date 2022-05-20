@@ -57,8 +57,8 @@ export class EngineConfigurationService {
         //localstorage
         // server -> default
         this.store.dispatch(viewActions.viewBuild( { server } ));
-
-        return resolve('');
+        
+        return resolve('success');
 
       } catch(err) {
         return reject(err);

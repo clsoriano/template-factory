@@ -117,7 +117,6 @@ export class DynamicFormControlDirective extends NgControl implements AfterConte
   }
 
   viewToModelUpdate(newValue: any): void {
-    console.log(newValue);
     this.update.emit(newValue);
   }
 

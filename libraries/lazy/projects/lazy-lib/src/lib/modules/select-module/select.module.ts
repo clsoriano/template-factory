@@ -6,8 +6,6 @@ import { ComponentControlInterface, ModuleControlInterface } from '../../models/
 import { SelectComponent } from './select/select.component';
 import { DirectiveModule } from '../../directive/directive.module';
 
-
-
 @NgModule({
   declarations: [
     SelectComponent
