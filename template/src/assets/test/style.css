@@ -68,3 +68,8 @@
   color: #00693c !important;
 }
 /*# sourceMappingURL=style.css.map */
+
+hr {
+  border: 1px solid #E9E9E9;
+  height: 0px;
+}

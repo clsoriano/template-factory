@@ -1,7 +1,7 @@
 import { BehaviorSubject, filter, Observable, Subject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
-import { Server, Client, Div, NestedFlow, InputElement, nestedFlowBuild, getBuildView, getNestedFlowByName, saveGlobalData, customFunction, ActionsView, LoggerService, ValidatorElement, Resources } from 'store-lib';
+import { Server, Client, Div, NestedFlow, InputElement, nestedFlowBuild, getBuildView, getNestedFlowByName, saveGlobalData, customFunction, ActionsView, LoggerService, ValidatorElement, Resources, Execute } from 'store-lib';
 import { setValueToInputElement, ComponentConfiguration, isInputValue, InputAction, CustomValidator, customAsyncValidator } from 'lazy-lib';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClientServiceImpl } from '../service/http-client.service.impl';
@@ -50,13 +50,19 @@ export class ComponentBuild {
 
           if (!v.view) throw new Error(`View is undefined.`);
 
-          const { nestedFlow, resources, httpHandlerErrors } = v.view;
+          const { nestedFlow, resources, httpHandlerErrors, execute } = v.view;
 
           if (!nestedFlow) throw new Error(`nestedFlow is undefined.`);
 
           this.loadResources(resources);
 
           if(!httpHandlerErrors) this.logger.warn('httpHandlerErrors global is not configurated.');
+
+          if(execute) {
+            this.logger.info('Invoke Services or Clients before init nestedFlow', execute);
+            // Execute action => onLoad
+            this.executeBuilder(undefined, execute, undefined, undefined, ActionsView.onLoad);
+          }
 
           this.findNestedFlow(nestedFlow.name).subscribe(
             ({ nestedFlow, formGroupParent }) => {
@@ -149,8 +155,13 @@ export class ComponentBuild {
       if (isForm || isFormParent) {
         const { validatorsArray, asyncValidatorsArray } = this.validatorsBuild(validators);
 
+        /** Found values from globla variables services */
+        
+
         group[id] = new FormControl({ value, disabled }, validatorsArray, asyncValidatorsArray);
+        
         this.logger.log(id, group[id]);
+
         group[id].valueChanges.subscribe(
           (value: any) => {
 
@@ -159,8 +170,9 @@ export class ComponentBuild {
               saveGlobalData(id, value);
               // need send the group global...
               // the group send here in with all forms....
-
-              this.executeBuilder(value, input, this.formGroup, divParent, ActionsView.onChange);
+              const { execute } = input;
+              
+              this.executeBuilder(value, execute, this.formGroup, divParent, ActionsView.onChange);
 
             }
 
@@ -168,7 +180,9 @@ export class ComponentBuild {
         );
 
         // Execute action => onLoad
-        this.executeBuilder(undefined, input, group, divParent, ActionsView.onLoad);
+        const { execute } = input;
+
+        this.executeBuilder(undefined, execute, group, divParent, ActionsView.onLoad);
 
       }
 
@@ -227,32 +241,27 @@ export class ComponentBuild {
     }
   }
 
-  private executeBuilder(value: any, inputElement: InputElement, group: any, nestedFlow: any, actionView?: ActionsView) {
+  private executeBuilder(value: any, execute: Execute | undefined, group: any, nestedFlow: any, actionView?: ActionsView) {
 
-    if (inputElement) {
-      const { execute } = inputElement;
+    if (execute) {
 
-      if (execute) {
+      const { clientList, serverList } = execute;
 
-        const { clientList, serverList } = execute;
+      if (!clientList && !serverList) return; // if both element are null or undefined the validate is not continue.
 
-        if (!clientList && !serverList) return; // if both element are null or undefined the validate is not continue.
+      if (clientList) {
+        this.executeClients(clientList, value, group, nestedFlow, actionView);
+      }
 
-        if (clientList) {
-          this.clientExecutes(clientList, value, group, nestedFlow, actionView);
-        }
-
-        if (serverList) {
-          this.serverExcutes(serverList, value, group, actionView);
-        }
-
+      if (serverList) {
+        this.executeServers(serverList, value, group, actionView);
       }
 
     }
 
   }
 
-  clientExecutes(clientList: Client[], currentValue: any, group: any, nestedFlow: any, actionView?: ActionsView) {
+  executeClients(clientList: Client[], currentValue: any, group: any, nestedFlow: any, actionView?: ActionsView) {
     let clientListTemp = [...clientList];
 
     // Filter serverlist in case action is not null|undefined, otherwise remove all actionsView.onLoad
@@ -273,7 +282,7 @@ export class ComponentBuild {
 
         //Validate result how to assing to value of group
         // do refresh validations using group
-        if (onCallback) this.clientExecutes(clientList, value, group, nestedFlow, ActionsView.onCallback);
+        if (onCallback) this.executeClients(clientList, value, group, nestedFlow, ActionsView.onCallback);
 
         if (inputList) setValueToInputElement(inputList, group, actionView, value);
 
@@ -284,7 +293,7 @@ export class ComponentBuild {
 
   }
 
-  serverExcutes(serverList: Server[], value: any, group: any, actionView?: ActionsView) {
+  executeServers(serverList: Server[], value: any, group: any, actionView?: ActionsView) {
     let serverListTemp = [...serverList];
 
     // Filter serverlist in case action is not null|undefined, otherwise remove all actionsView.onLoad

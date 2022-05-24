@@ -6,7 +6,9 @@
             "description": "Example of firstView",
             "resources": {
                 "scripts": [],
-                "styles": ["./assets/test/style.css"]
+                "styles": [
+                    "./assets/test/style.css"
+                ]
             },
             "environments": {
                 "target": "development",
@@ -19,6 +21,51 @@
             "nestedFlow": {
                 "id": "1232323",
                 "name": "nextNestedFlow"
+            },
+            "execute": {
+                "serverList": [
+                    {
+                        "id": 1,
+                        "name": "getAutoCompleteInfo",
+                        "description": "gET INFO CLIENT",
+                        "uri": "https://proxybilletera-cert.pfcti.com/customer-mngmt/customers/get-auto-complete-info",
+                        "method": "POST",
+                        "actionView": "onLoad",
+                        "httpHeader": [],
+                        "httpParameter": {},
+                        "payload": {},
+                        "response": {
+                            "contactInfo": "$.Data.customer.contactInformation"
+                        },
+                        "storageName": "response01",
+                        "inputList": [
+                            {
+                                "name": "iptEmail",
+                                "value": "$.contactInfo[0].emails[0]"
+                            }
+                        ],
+                        "HttpHandlerErrors": [
+                            {
+                                "code": 401,
+                                "message": "Unauthorized",
+                                "log": "Error get services `${name}`",
+                                "redirect": true,
+                                "nestedFlow": {
+                                    "id": "id-12345-nestedFlow",
+                                    "name": "test"
+                                }
+                            },
+                            {
+                                "code": 404,
+                                "log": "Not found registers when get services `${name}`",
+                                "message": "Registers not found, try again with others filters!",
+                                "show": true,
+                                "time": 6000
+                            }
+                        ]
+                    }
+                ],
+                "clientList": []
             },
             "httpHandlerErrors": [
                 {
@@ -57,7 +104,6 @@
                 "style": {},
                 "class": [
                     "container-sm",
-                    "container",
                     "my-3"
                 ],
                 "isStep": true,
@@ -65,7 +111,10 @@
                     {
                         "id": "div-form",
                         "name": "formConfirmData",
-                        "class": ["my-3", "py-3"],
+                        "class": [
+                            "my-3",
+                            "py-3"
+                        ],
                         "style": {},
                         "isForm": true,
                         "divList": [
@@ -78,9 +127,13 @@
                                 "style": {},
                                 "div": {
                                     "id": "div-in-0",
-                                    "class": ["input-round"],
+                                    "class": [
+                                        "col-10",
+                                        "d-flex",
+                                        "justify-content-center"
+                                    ],
                                     "style": {
-                                        "width":"100%"
+                                        "width": "100%"
                                     },
                                     "input": {
                                         "id": "iptImage",
@@ -104,10 +157,12 @@
                                 "textHtml": "<div class='mb-3'> <span>Hola Juan!<span> <div class='mt-3'><strong>Solícita y recibe una tarjeta de crédito en minutos, para tus viajes, comprar en línea y todo lo que quieras. 😎</strong></div> </div>",
                                 "div": {
                                     "id": "div-in-0",
-                                    "class": ["input-round"],
+                                    "class": [
+                                        "input-round"
+                                    ],
                                     "textHtml": "<div class='mb-4'><span>Revisa que los datos esten correctos para continuar</span></div>",
                                     "style": {
-                                        "width":"100%"
+                                        "width": "100%"
                                     },
                                     "input": {
                                         "id": "iptEmail",
@@ -135,9 +190,16 @@
                                                 "message": "Revisa tu correo",
                                                 "expression": {
                                                     "rules": {
-                                                        "<" : [{"var": "mail.length"}, 5]
+                                                        "<": [
+                                                            {
+                                                                "var": "mail.length"
+                                                            },
+                                                            5
+                                                        ]
                                                     },
-                                                    "data": { "mail" : "value" }
+                                                    "data": {
+                                                        "mail": "value"
+                                                    }
                                                 }
                                             }
                                         ]
@@ -153,7 +215,9 @@
                                 "style": {},
                                 "div": {
                                     "id": "div-in-0",
-                                    "class": ["input-round"],
+                                    "class": [
+                                        "input-round"
+                                    ],
                                     "style": {
                                         "width": "100%"
                                     },
@@ -167,7 +231,7 @@
                                         "placeholder": "Digita tu número teléfonico",
                                         "appareance": "outline",
                                         "value": "",
-                                        "mask":"##-######",
+                                        "mask": "##-######",
                                         "maxlength": 9,
                                         "floatLabel": "always",
                                         "validators": [
@@ -203,7 +267,7 @@
                                             "button-round"
                                         ],
                                         "style": {
-                                            "width":"100%",
+                                            "width": "100%",
                                             "height": "50px"
                                         },
                                         "type": "button",
@@ -227,8 +291,11 @@
                     },
                     {
                         "id": "div-form",
-                        "name": "formLogin2",
-                        "class": ["my-3", "py-3"],
+                        "name": "formAceptaTerminos",
+                        "class": [
+                            "my-3",
+                            "py-3"
+                        ],
                         "style": {},
                         "isForm": true,
                         "divList": [
@@ -242,76 +309,170 @@
                                     {
                                         "id": "div-l-0",
                                         "class": [
-                                            "col"
+                                            "col-2"
                                         ],
                                         "style": {},
                                         "input": {
-                                            "id": "iptUsername",
-                                            "name": "Usuario",
-                                            "label": "Usuario",
+                                            "id": "iptImg",
+                                            "name": "imgAuth",
+                                            "label": "",
                                             "class": [],
                                             "style": {},
-                                            "type": "text",
-                                            "placeholder": "Ingrese usuario",
-                                            "appareance": "outline",
-                                            "validators": [
-                                                {
-                                                    "type": "required",
-                                                    "message": "Campo requerido"
-                                                }
-                                            ]
+                                            "type": "image",
+                                            "value": "https://onboardingreg-cert.pfcti.com/media/resources/api/v1/file/2LZAg5"
                                         }
                                     },
                                     {
                                         "id": "div-in-0",
                                         "class": [
-                                            "col"
+                                            "col-10",
+                                            "mt-3"
+                                        ],
+                                        "style": {},
+                                        "textHtml": "<strong>Autorización Legal</strong>"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "div-pr3",
+                                "class": [
+                                    "row"
+                                ],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col-10"
+                                        ],
+                                        "style": {
+                                            "font-size": "16px",
+                                            "font-family": "Hind",
+                                            "line-height": "28px",
+                                            "font-weight": "500"
+                                        },
+                                        "textHtml": "<span>Vamos a seleccionar las mejores tarjetas para ti.</span>"
+                                    },
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col-10"
+                                        ],
+                                        "style": {
+                                            "font-size": "16px",
+                                            "font-family": "Hind",
+                                            "line-height": "22.41px",
+                                            "font-weight": "600"
+                                        },
+                                        "textHtml": "<span>Al continuar, estás autorizando los términos y condiciones y la política de datos, que podrás consultar en el siguiente documento:</span>"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "div-pr3",
+                                "class": [
+                                    "row"
+                                ],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col-12"
+                                        ],
+                                        "style": {},
+                                        "textHtml": "<hr/>"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "div-pr3",
+                                "class": [
+                                    "row"
+                                ],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col-12"
                                         ],
                                         "style": {},
                                         "input": {
-                                            "id": "iptPassword",
-                                            "name": "Contraseña",
-                                            "label": "Contraseña",
+                                            "id": "iptRead",
+                                            "name": "readAuth",
+                                            "label": "",
                                             "class": [],
                                             "style": {},
-                                            "type": "password",
-                                            "placeholder": "Ingrese su contraseña",
-                                            "appareance": "outline",
-                                            "validators": [
-                                                {
-                                                    "type": "required",
-                                                    "message": "Campo requerido"
-                                                }
-                                            ],
-                                            "execute": {
-                                                "clientList": [],
-                                                "serverList": []
+                                            "type": "readMoreFade",
+                                            "value": "",
+                                            "extendedAttributes": {
+                                                "minHeight": "60px",
+                                                "valueReadMore": "<span>Yo, Carlos Molina Guevara, declaro que los datos por mi suministrados son ciertos, y autorizo a BANCO PROMERICA, S.A. para consultar, compartir, reportar y adicionar mi historial de información crediticia y personal con las Agencias de Información de datos siguientes: _______________________________________, investigar mi comportamiento crediticio y la información que he proporcionado, tanto con las personas naturales o jurídicas, así como para tratar, analizar, procesar, actualizar, mis datos crediticios y personales incluso a través de terceros, lo cual incluye para la realización de servicios como entrega de correspondencia y otros similares, tendientes a las operaciones financieras del propio banco.</span>",
+                                                "linkLabel": "Ver todo el documento"
                                             }
                                         }
-                                    },
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "div-pr3",
+                                "class": [
+                                    "row"
+                                ],
+                                "style": {},
+                                "divList": [
                                     {
                                         "id": "div-in-0",
                                         "class": [
-                                            "col"
+                                            "col-12",
+                                            "mt-3"
+                                        ],
+                                        "style": {},
+                                        "textHtml": "<hr/>"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "div-pr3",
+                                "class": [
+                                    "row"
+                                ],
+                                "style": {},
+                                "divList": [
+                                    {
+                                        "id": "div-in-0",
+                                        "class": [
+                                            "col-12",
+                                            "mt-5"
                                         ],
                                         "style": {},
                                         "input": {
-                                            "id": "iptDocument",
-                                            "name": "DUI",
-                                            "label": "DUI",
-                                            "class": [],
-                                            "style": {},
-                                            "type": "text",
-                                            "placeholder": "Ingrese Documento",
-                                            "appareance": "outline",
-                                            "validators": [
-                                                {
-                                                    "type": "required",
-                                                    "message": "Campo requerido"
-                                                }
+                                            "id": "iptAceptar",
+                                            "name": "aceptar",
+                                            "label": "Aceptar y continuar",
+                                            "value": "Aceptar y continuar",
+                                            "class": [
+                                                "mat-raised-button",
+                                                "button-round"
                                             ],
-                                            "mask": "########-#",
-                                            "maxlength": 10
+                                            "style": {
+                                                "width": "100%",
+                                                "height": "50px"
+                                            },
+                                            "type": "button",
+                                            "placeholder": "",
+                                            "appareance": "",
+                                            "validators": [],
+                                            "color": "primary",
+                                            "execute": {
+                                                "clientList": [
+                                                    {
+                                                        "actionView": "onNextStep",
+                                                        "formParentName": "formAceptaTerminos"
+                                                    }
+                                                ]
+                                            }
                                         }
                                     }
                                 ]

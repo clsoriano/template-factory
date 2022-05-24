@@ -25,7 +25,7 @@ export class HttpClientServiceImpl implements HttpClientService {
     this.headers = new HttpHeaders({ 'Access-Control-Allow-Origin': '*'});
 
     // Extracting objects
-    let { body, httpHeaders, method, response: handleResponse } = this.serverSend;
+    let { payload, httpHeaders, method, response: handleResponse } = this.serverSend;
 
     // Clone object for reset values.
     //utils.cloneObject(server, this.serverSend);
@@ -41,7 +41,7 @@ export class HttpClientServiceImpl implements HttpClientService {
 
     const options = {
       headers : this.headers,
-      body,
+      payload,
       params: this.parameters,
       responseType,
       //reportProgress: true // Show process of request, search more about this uses

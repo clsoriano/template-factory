@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { environment } from 'src/environments/environment';/* 
-import * as viewActions from '../store/actions'; */
+import { environment } from 'src/environments/environment';
 import * as viewActions from 'store-lib';
 
 @Injectable({

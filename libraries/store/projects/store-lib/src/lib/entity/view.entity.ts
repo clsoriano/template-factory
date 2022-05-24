@@ -1,4 +1,5 @@
 import { EnvironmentView } from "./enviroments-view.entity";
+import { Execute } from "./execute.entity";
 import { HttpHandlerErrors } from "./httpHandlerError.entity";
 import { NestedFlow } from "./nestedFlow.entity";
 import { Resources } from "./resources.entity";
@@ -13,6 +14,7 @@ export class View {
     resources?: Resources;
     nestedFlow?: NestedFlow;
     httpHandlerErrors?: HttpHandlerErrors[];
+    execute?: Execute;
     header?: any;
     footer?: any;
     

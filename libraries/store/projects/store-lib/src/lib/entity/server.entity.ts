@@ -13,7 +13,7 @@ export class Server {
     method!: string;
     httpHeaders!: HttpHeaders[];
     httpParameter!: HttpParameter;
-    body!: any; // define payload send to server
+    payload!: any; // define payload send to server
     storageName!: string; // Represent name in localStorage
     handlerErrorList!: HttpHandlerErrors[];
     actionView!: ActionsView;
